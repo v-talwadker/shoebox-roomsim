@@ -17,18 +17,18 @@ abs_wall = findAbsCoeffsFromRT(room, rt60);
 [~,  d_critical] = room_stats(room, abs_wall);
 
 % receiver position
-rec = [ 4.5 3.4 1.5;
-        2.0 3.1 1.4];
+rec = [ 4.5 3.4 1.5];
+        % 2.0 3.1 1.4];
 nRec = size(rec,1);
 
 % source positions
-src = [ 6.2 2.0 1.8;
-        7.9 3.3 1.75;
-        5.8 5.0 1.9];
+src = [ 6.2 2.0 1.8];
+        % 7.9 3.3 1.75;
+        % 5.8 5.0 1.9];
 nSrc = size(src,1);
 
 % SH orders for receivers
-rec_orders = [1 3]; % rec1: first order(4ch), rec2: 3rd order (16ch)
+rec_orders = 3; % rec1: first order(4ch), rec2: 3rd order (16ch)
 
 % % convert source directions from listener-centric to room-centric
 % [src_coords(:,1), src_coords(:,2), src_coords(:,3)] = sph2cart(src_dirs(:,1)*pi/180, ...
@@ -60,7 +60,7 @@ end
 % encoded in the echograms, hence they are rendered directly to discrete RIRs
 fs = 48000;
 sh_rirs = render_sh_rirs(abs_echograms, band_centerfreqs, fs);
-
+plot(sh_rirs);
 toc
 
 %% Generate sound scenes
