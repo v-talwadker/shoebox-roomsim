@@ -18,6 +18,8 @@ h = room(3);
 
 % source coordinates
 S = src;
+S_x = S(:,1); S_y = S(:,2); S_z = S(:,3);
+
 % move origin to the centre of the room
 S_x = S(:, 1) - l/2;
 S_y = w/2 - S(:, 2);
@@ -25,6 +27,8 @@ S_z = S(:, 3) - h/2;
 
 % receiver coordinates
 R = rec;
+R_x = R(:,1); R_y = R(:,2); R_z = R(:,3);
+
 % move origin to the centre of the room
 R_x = R(:, 1) - l/2;
 R_y = w/2 - R(:, 2);

@@ -4,14 +4,15 @@ function array_rirs = render_array_rirs(echograms, band_centerfreqs, fs, grids, 
 nRec = size(echograms,2);
 nSrc = size(echograms,1);
 nBands = size(echograms,3);
-if (nRec~=length(grids))||(nRec~=length(array_irs))
-    error('The number of grids and sets of array responses should match the receiver positions')
-end
+% if (nRec~=length(grids))||(nRec~=length(array_irs))
+%     error('The number of grids and sets of array responses should match the receiver positions')
+% end
 
 % sample echogram to a specific sampling rate with fractional interpolation
 FRACTIONAL = 1;
 % decide on number of samples for all RIRs
-endtime = 0;
+endtime = 0; 
+nr = 1:nRec;
 for ns=1:nSrc
     for nr=1:nRec
         temptime = echograms(ns, nr).time(end);

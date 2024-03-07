@@ -20,7 +20,7 @@ function echogram = ims_coreMtx(room, source, receiver, type, typeValue)
 %          y<----.  |   | l
 %             |     |   |
 %             |     |   |
-%             o_____|   -
+%             |_____o   - (changed origin to lower left ground corner)
 %
 %             |-----|
 %                w
@@ -83,8 +83,6 @@ echogram.coords = echogram.coords(idx, :);
 
 end
 
-
-
 function reflections = ims_coreN(room, src, rec, N)
 
     % yeah, speed of sound...
@@ -101,12 +99,20 @@ function reflections = ims_coreN(room, src, rec, N)
     I = I(s_ord<=N);
     J = J(s_ord<=N);
     K = K(s_ord<=N);
-
+    
+    % excluding direct sound
+    grid = [I J K];
+    grid = grid(any(grid,2),:);
+    I = grid(:,1);
+    J = grid(:,2);
+    K = grid(:,3);
+    clear grid
+    
     % image source coordinates with respect to receiver
     s_x = I*room(1) + (-1).^I*src(1) - rec(1);
     s_y = J*room(2) + (-1).^J*src(2) - rec(2);
     s_z = K*room(3) + (-1).^K*src(3) - rec(3);
-    % distance
+    % distance between image source and receiver
     s_d = sqrt(s_x.^2 + s_y.^2 + s_z.^2);
     % reflection propagation time
     s_t = s_d/c;
@@ -121,7 +127,6 @@ function reflections = ims_coreN(room, src, rec, N)
     reflections.time = s_t;
     reflections.order = [I J K];
     reflections.coords = [s_x s_y s_z];
-
 end
 
 function reflections = ims_coreT(room, src, rec, maxTime)

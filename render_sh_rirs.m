@@ -1,4 +1,4 @@
-function rirs = render_sh_rirs(echograms, band_centerfreqs, fs)
+ function rirs = render_sh_rirs(echograms, band_centerfreqs, fs)
 %
 % echograms nSrc nRec nBands echogram structure
 nRec = size(echograms,2);
@@ -8,13 +8,16 @@ nBands = size(echograms,3);
 % sample echogram to a specific sampling rate with fractional interpolation
 FRACTIONAL = 1;
 % decide on number of samples for all RIRs
-endtime = 0;
-for ns=1:nSrc
-    for nr=1:nRec
-        temptime = echograms(ns, nr).time(end);
-        if (temptime>endtime), endtime = temptime; end
-    end
-end
+endtime = 0.15;
+ns = nSrc;
+% endtime = 0;
+% for ns=1:nSrc
+%     for nr=1:nRec
+%         temptime = echograms(ns, nr).time(end);
+%         if (temptime>endtime), endtime = temptime; end
+%     end
+% end
+
 L_rir = ceil(endtime*fs);
 if (nBands>1)
     L_fbank = 1000;
