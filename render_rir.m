@@ -12,7 +12,7 @@ function IR = render_rir(echogram, endtime, fs, FRACTIONAL, RAND_IMS, rand_ims_d
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if nargin<5, RAND_IMS = 0; end
+if nargin<5, RAND_IMS = 0; rand_ims_dels = 0; end
 if nargin<4, FRACTIONAL = 1; end
 
 % number of reflections inside the time limit
@@ -30,7 +30,7 @@ if FRACTIONAL
     H_frac = lagrange(order, 50 + fractions);    
 
     % initialise array
-    tempIR = zeros(ceil(endtime*fs)+2*h_offset, size(echogram.value,2));
+    tempIR = zeros(ceil(endtime*fs)+2*h_offset+ceil(max(abs(rand_ims_dels))*fs), size(echogram.value,2));
 
     % render impulse response
     for i=1:idx_trans
@@ -50,7 +50,7 @@ if FRACTIONAL
             h_frac * echogram.value(i,:);
     end
 
-    IR = tempIR(h_offset+1:end - h_offset,:);
+    IR = tempIR(h_offset+(1:ceil(endtime*fs)),:);
     
 else
     % initialise array

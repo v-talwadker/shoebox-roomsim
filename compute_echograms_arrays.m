@@ -1,4 +1,4 @@
-function [abs_echograms, echograms,imgSrcOrder] = compute_echograms_arrays(room, src, rec, abs_wall, limits)
+function [abs_echograms, echograms] = compute_echograms_arrays(room, src, rec, abs_wall, imgSrcOrder)
 
 nRec = size(rec,1);
 nSrc = size(src,1);
@@ -6,7 +6,6 @@ nSrc = size(src,1);
 % type = 'maxTime';
 % time = 0.16;
 type = 'maxOrder';
-imgSrcOrder = 1;
 % compute echogram due to pure propagation (frequency-independent)
 for ns=1:nSrc
     for nr=1:nRec

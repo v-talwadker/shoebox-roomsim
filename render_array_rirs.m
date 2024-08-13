@@ -11,14 +11,16 @@ nBands = size(echograms,3);
 % sample echogram to a specific sampling rate with fractional interpolation
 FRACTIONAL = 1;
 % decide on number of samples for all RIRs
-endtime = 0; 
+endtime = 0.05; 
 nr = 1:nRec;
-for ns=1:nSrc
-    for nr=1:nRec
-        temptime = echograms(ns, nr).time(end);
-        if (temptime>endtime), endtime = temptime; end
-    end
-end
+ns = 1:nSrc;
+% endtime = 0;
+% for ns=1:nSrc
+%     for nr=1:nRec
+%         temptime = echograms(ns, nr).time(end);
+%         if (temptime>endtime), endtime = temptime; end
+%     end
+% end
 L_rir = ceil(endtime*fs);
 if (nBands>1),  L_fbank = 1000;
 else            L_fbank = 0; end

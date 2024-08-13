@@ -53,27 +53,30 @@ text(0,w,0,'y','Color','g','FontSize',24);
 line([0 0],[0 0], [0 h],'color','b');
 text(0,0,h,'z','Color','b','FontSize',24);
 
+text(S_x,S_y,S_z,'S','FontSize',12,'FontWeight','bold');
+text(R_x,R_y,R_z,'R','FontSize',12,'FontWeight','bold');
+
 % set up unit sphere information
-numSphereFaces = 10;
-[unitSphereX, unitSphereY, unitSphereZ] = sphere(numSphereFaces);
-
-spheresRadius = 0.2;
-
-for i=1:size(S, 1)
-    sphereX = S_x(i) + unitSphereX*spheresRadius;
-    sphereY = S_y(i) + unitSphereY*spheresRadius;
-    sphereZ = S_z(i) + unitSphereZ*spheresRadius;
-
-    surface(sphereX, sphereY, sphereZ,'FaceColor', 'b');            
-end
-
-for i=1:size(R, 1)
-    sphereX = R_x(i) + unitSphereX*spheresRadius;
-    sphereY = R_y(i) + unitSphereY*spheresRadius;
-    sphereZ = R_z(i) + unitSphereZ*spheresRadius;
-
-    surface(sphereX, sphereY, sphereZ,'FaceColor', 'r');            
-end
+% numSphereFaces = 10;
+% [unitSphereX, unitSphereY, unitSphereZ] = sphere(numSphereFaces);
+% 
+% spheresRadius = 0.2;
+% 
+% for i=1:size(S, 1)
+%     sphereX = S_x(i) + unitSphereX*spheresRadius;
+%     sphereY = S_y(i) + unitSphereY*spheresRadius;
+%     sphereZ = S_z(i) + unitSphereZ*spheresRadius;
+% 
+%     surface(sphereX, sphereY, sphereZ,'FaceColor', 'b');            
+% end
+% 
+% for i=1:size(R, 1)
+%     sphereX = R_x(i) + unitSphereX*spheresRadius;
+%     sphereY = R_y(i) + unitSphereY*spheresRadius;
+%     sphereZ = R_z(i) + unitSphereZ*spheresRadius;
+% 
+%     surface(sphereX, sphereY, sphereZ,'FaceColor', 'r');            
+% end
 
 light('Position',[2*l 0 2*h])        
 axis equal

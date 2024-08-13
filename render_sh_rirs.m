@@ -8,7 +8,7 @@ nBands = size(echograms,3);
 % sample echogram to a specific sampling rate with fractional interpolation
 FRACTIONAL = 1;
 % decide on number of samples for all RIRs
-endtime = 0.15;
+endtime = 0.05;
 ns = nSrc;
 % endtime = 0;
 % for ns=1:nSrc
@@ -31,7 +31,6 @@ for nr=1:nRec
     tempSH = size(echograms(1, nr).value,2);
     if (tempSH>maxSH), maxSH = tempSH; end
 end
-
 % render responses and apply filterbank to combine different decays at different bands
 rirs = zeros(L_tot, maxSH, nr, ns);
 for ns=1:nSrc

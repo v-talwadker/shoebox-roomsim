@@ -48,7 +48,8 @@ if (source(1)>l)||(source(2)>w)||(source(3)>h)
 end
 % move origin to the centre of the room
 src(1) = source(1) - l/2;
-src(2) = w/2 - source(2);
+% src(2) = w/2 - source(2);
+src(2) = source(2) - w/2; % VT
 src(3) = source(3) - h/2;
 
 % receiver coordinates
@@ -60,12 +61,13 @@ if (receiver(1)>l)||(receiver(2)>w)||(receiver(3)>h)
 end
 % move origin to the centre of the room
 rec(1) = receiver(1) - l/2;
-rec(2) = w/2 - receiver(2);
+% rec(2) = w/2 - receiver(2);
+rec(2) = receiver(2) - w/2; % VT
 rec(3) = receiver(3) - h/2;
 
 if isequal(lower(type), 'maxorder')
     maxOrder = typeValue;
-    echogram = ims_coreN(room, src, rec, maxOrder);
+    echogram = ims_coreN(room, src, rec, maxOrder); % src and rec wrt origin at centre of room
     
 elseif isequal(lower(type), 'maxtime')
     maxDelay = typeValue;
